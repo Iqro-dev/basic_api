@@ -8,6 +8,6 @@ namespace basic_api.Database.Models
             : base(options)
         {
         }
-        public DbSet<UserModel> Users { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
     }
 }

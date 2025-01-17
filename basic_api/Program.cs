@@ -1,5 +1,6 @@
 
 using basic_api.Database.Models;
+using basic_api.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace basic_api
@@ -12,9 +13,13 @@ namespace basic_api
 
             // Add services to the container.
 
+            builder.Services.Configure<BasicApiDatabaseSettings>(
+                builder.Configuration.GetSection("BasicApiDatabase"));
+
+            builder.Services.AddSingleton<UsersService>();
             builder.Services.AddControllers();
             builder.Services.AddDbContext<BasicApiContext>(opt =>
-                opt.UseInMemoryDatabase("TodoList"));
+                opt.UseInMemoryDatabase("BasicApi"));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
