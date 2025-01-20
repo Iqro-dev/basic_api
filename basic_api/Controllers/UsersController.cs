@@ -15,19 +15,19 @@ namespace basic_api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UsersService _UsersService;
+        private readonly UsersService _usersService;
 
-        public UsersController(UsersService UsersService) =>
-            _UsersService = UsersService;
+        public UsersController(UsersService usersService) =>
+            _usersService = usersService;
 
         [HttpGet]
         public async Task<List<User>> Get() =>
-            await _UsersService.GetAsync();
+            await _usersService.GetAsync();
 
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<User>> Get(string id)
         {
-            var User = await _UsersService.GetAsync(id);
+            var User = await _usersService.GetAsync(id);
 
             if (User is null)
             {
@@ -41,7 +41,7 @@ namespace basic_api.Controllers
         public async Task<IActionResult> Post(User newUser)
         {
 
-            await _UsersService.CreateAsync(newUser);
+            await _usersService.CreateAsync(newUser);
 
             return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
         }
@@ -49,7 +49,7 @@ namespace basic_api.Controllers
         [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, User updatedUser)
         {
-            var User = await _UsersService.GetAsync(id);
+            var User = await _usersService.GetAsync(id);
 
             if (User is null)
             {
@@ -58,7 +58,7 @@ namespace basic_api.Controllers
 
             updatedUser.Id = User.Id;
 
-            await _UsersService.UpdateAsync(id, updatedUser);
+            await _usersService.UpdateAsync(id, updatedUser);
 
             return NoContent();
         }
@@ -66,14 +66,14 @@ namespace basic_api.Controllers
         [HttpDelete("{id:length(24)}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var User = await _UsersService.GetAsync(id);
+            var User = await _usersService.GetAsync(id);
 
             if (User is null)
             {
                 return NotFound();
             }
 
-            await _UsersService.RemoveAsync(id);
+            await _usersService.RemoveAsync(id);
 
             return NoContent();
         }
