@@ -16,9 +16,13 @@ namespace basic_api.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UsersService _usersService;
+        private readonly GroupsService _groupsService;
 
-        public UsersController(UsersService usersService) =>
+        public UsersController(UsersService usersService, GroupsService groupsService)
+        {
             _usersService = usersService;
+            _groupsService = groupsService;
+        }
 
         [HttpGet]
         public async Task<List<User>> Get() =>
@@ -40,7 +44,15 @@ namespace basic_api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(User newUser)
         {
+            if (newUser.GroupId != null)
+            {
+                var groupId = await _groupsService.GetAsync(newUser.GroupId);
+                if (groupId is null)
+                {
+                    return NotFound("Group not found");
 
+                }
+            }
             await _usersService.CreateAsync(newUser);
 
             return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
@@ -54,6 +66,16 @@ namespace basic_api.Controllers
             if (User is null)
             {
                 return NotFound();
+            }
+
+            if (updatedUser.GroupId != null)
+            {
+                var groupId = await _groupsService.GetAsync(updatedUser.GroupId);
+                if (groupId is null)
+                {
+                    return NotFound("Group not found");
+
+                }
             }
 
             updatedUser.Id = User.Id;
