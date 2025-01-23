@@ -17,6 +17,7 @@ namespace basic_api
                 builder.Configuration.GetSection("BasicApiDatabase"));
 
             builder.Services.AddSingleton<UsersService>();
+            builder.Services.AddSingleton<GroupsService>();
             builder.Services.AddControllers();
             builder.Services.AddDbContext<BasicApiContext>(opt =>
                 opt.UseInMemoryDatabase("BasicApi"));

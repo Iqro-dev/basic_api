@@ -10,10 +10,12 @@ namespace basic_api.Database.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
 
-        [JsonPropertyName("Name")]
-        [BsonElement("Name")]
-        public required string Name { get; set; }
-        public required string Email { get; set; }
+        public string? GroupId { get; set; }
+
+        [JsonPropertyName("name")]
+        [BsonElement("name")]
+        public string Name { get; set; } = null!;
+        public string Email { get; set; } = null!;
         public int Age { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using basic_api.Database.Models;
 
 namespace basic_api.Database.Models
 {
@@ -9,5 +10,6 @@ namespace basic_api.Database.Models
         {
         }
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Group> Groups { get; set; } = default!;
     }
 }
