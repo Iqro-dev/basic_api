@@ -1,5 +1,5 @@
 ﻿using basic_api.Database.Models;
-using basic_api.Services;
+using basic_api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace basic_api.Controllers
@@ -9,9 +9,9 @@ namespace basic_api.Controllers
 
     public class GroupsController : Controller
     {
-        private readonly GroupsService _groupsService;
+        private readonly IGroupsService _groupsService;
 
-        public GroupsController(GroupsService groupsService) =>
+        public GroupsController(IGroupsService groupsService) =>
             _groupsService = groupsService;
 
         [HttpGet]
