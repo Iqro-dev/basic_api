@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using basic_api.Database.Models;
 using basic_api.Services;
 using System.Security.Cryptography;
+using basic_api.Services.Interfaces;
 
 namespace basic_api.Controllers
 {
@@ -15,10 +16,10 @@ namespace basic_api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UsersService _usersService;
-        private readonly GroupsService _groupsService;
+        private readonly IUsersService _usersService;
+        private readonly IGroupsService _groupsService;
 
-        public UsersController(UsersService usersService, GroupsService groupsService)
+        public UsersController(IUsersService usersService, IGroupsService groupsService)
         {
             _usersService = usersService;
             _groupsService = groupsService;
