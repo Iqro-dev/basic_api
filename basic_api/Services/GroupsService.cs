@@ -1,10 +1,11 @@
 ﻿using basic_api.Database.Models;
+using basic_api.Services.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace basic_api.Services
 {
-    public class GroupsService
+    public class GroupsService : IGroupsService
     {
         private readonly IMongoCollection<Group> _groupsCollection;
 

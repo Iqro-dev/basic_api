@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using basic_api.Database.Models;
 using basic_api.Services;
 using System.Security.Cryptography;
+using basic_api.Services.Interfaces;
+using basic_api.Database.Dto;
 
 namespace basic_api.Controllers
 {
@@ -15,10 +17,10 @@ namespace basic_api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UsersService _usersService;
-        private readonly GroupsService _groupsService;
+        private readonly IUsersService _usersService;
+        private readonly IGroupsService _groupsService;
 
-        public UsersController(UsersService usersService, GroupsService groupsService)
+        public UsersController(IUsersService usersService, IGroupsService groupsService)
         {
             _usersService = usersService;
             _groupsService = groupsService;
@@ -53,9 +55,17 @@ namespace basic_api.Controllers
 
                 }
             }
+
             await _usersService.CreateAsync(newUser);
 
-            return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
+            var userDtoResponse = new UserDto(
+                 newUser.Id,
+                 newUser.Name,
+                 newUser.GroupId
+             );
+
+
+            return CreatedAtAction(nameof(Get), new { id = newUser.Id }, userDtoResponse);
         }
 
         [HttpPut("{id:length(24)}")]
