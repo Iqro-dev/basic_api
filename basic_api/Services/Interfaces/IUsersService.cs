@@ -1,4 +1,5 @@
-﻿using basic_api.Database.Models;
+﻿using basic_api.Database.Dto;
+using basic_api.Database.Models;
 
 namespace basic_api.Services.Interfaces
 {

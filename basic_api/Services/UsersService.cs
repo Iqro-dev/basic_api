@@ -1,4 +1,5 @@
-﻿using basic_api.Database.Models;
+﻿using basic_api.Database.Dto;
+using basic_api.Database.Models;
 using basic_api.Services.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -30,6 +31,7 @@ namespace basic_api.Services
 
         public async Task CreateAsync(User newUser) =>
             await _usersCollection.InsertOneAsync(newUser);
+        
 
         public async Task UpdateAsync(string id, User updatedUser) =>
             await _usersCollection.ReplaceOneAsync(x => x.Id == id, updatedUser);

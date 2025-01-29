@@ -1,4 +1,5 @@
 ﻿using basic_api.Controllers;
+using basic_api.Database.Dto;
 using basic_api.Database.Models;
 using basic_api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -74,7 +75,7 @@ namespace basic_api.Tests
             _mockUsersService.Setup(service => service.CreateAsync(user));
 
             var result = await _controller.Post(user);
-            
+
             Assert.IsType<CreatedAtActionResult>(result);
         }
 
@@ -82,7 +83,7 @@ namespace basic_api.Tests
         public async Task TestPost_GroupNotFound()
         {
             var user = new User { Id = "1", Name = "John", GroupId = "1" };
-            
+
             _mockGroupsService.Setup(service => service.GetAsync("1")).ReturnsAsync((Group?)null);
             
             var result = await _controller.Post(user);
