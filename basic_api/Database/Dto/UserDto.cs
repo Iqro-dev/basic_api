@@ -1,7 +1,4 @@
-﻿using basic_api.Database.Models;
-using System.Text.Json.Serialization;
-
-namespace basic_api.Database.Dto
+﻿namespace basic_api.Database.Dto
 {
     public class UserDto
     {

@@ -1,5 +1,4 @@
 ﻿using basic_api.Controllers;
-using basic_api.Database.Dto;
 using basic_api.Database.Models;
 using basic_api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;

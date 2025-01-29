@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using basic_api.Database.Models;
 
 namespace basic_api.Database.Models
 {

@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using basic_api.Database.Models;
-using basic_api.Services;
-using System.Security.Cryptography;
 using basic_api.Services.Interfaces;
 using basic_api.Database.Dto;
 
